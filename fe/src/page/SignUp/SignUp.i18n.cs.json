@@ -1,0 +1,10 @@
+{
+    "SIGN_UP_TITLE":"Registrace",
+    "SIGN_UP_FIRST_NAME":"Jméno",
+    "SIGN_UP_LAST_NAME":"Příjmení",
+    "SIGN_UP_EMAIL_ADDRESS":"Emailová adresa",
+    "SIGN_UP_PASSWORD":"Heslo",
+    "SIGN_UP_PASSWORD_AGAIN":"Heslo znovu",
+    "SIGN_UP_SUBMIT_BUTTON":"Vytvořit účet",
+    "SIGN_UP_LINK_TO_SIGN_IN":"Již jste zaregistrovaní? Přihlašte se"
+}

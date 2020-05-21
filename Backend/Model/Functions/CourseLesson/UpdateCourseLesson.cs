@@ -1,0 +1,11 @@
+﻿using System;
+
+namespace Model.Functions.CourseLesson
+{
+    public class UpdateCourseLesson
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
+}

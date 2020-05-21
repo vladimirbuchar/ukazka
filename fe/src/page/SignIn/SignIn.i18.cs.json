@@ -1,0 +1,10 @@
+{
+    "EMAIL_ADDRESS":"Váš email",
+    "PASSWORD": "Vaše heslo",
+    "REMEMBER_ME":"Neodhlašovat",
+    "FORGOT_PASSWORD":"Zapoměli jste heslo?",
+    "SIGN_UP":"Nemáte účet? Zaregistrujte se",
+    "SIGN_IN":"Přihlášení",
+    "SIGN_IN_BUTTON":"Přilásit se",
+    "SIGNIN_BAD_LOGIN":"Nesprávné uživatelské jméno nebo heslo"
+}

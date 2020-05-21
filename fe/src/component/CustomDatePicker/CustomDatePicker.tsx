@@ -1,0 +1,44 @@
+import React  from 'react';
+import { Grid } from '@material-ui/core';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+export default function CustomDatePicker(props:any) {
+    const {selectedDate,onChangeDate,label} = props;
+    
+    return (
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid>
+        <KeyboardDatePicker
+          fullWidth
+          disablePast
+          disableToolbar
+          variant="inline"
+          format="dd.MM.yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label={label}
+          value={selectedDate}
+          onChange={onChangeDate}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+        
+      </Grid>
+    </MuiPickersUtilsProvider>
+
+    );
+}
+CustomDatePicker.prototype ={
+    selectedDate: PropTypes.any,
+    onChangeDate: PropTypes.func,
+    label: PropTypes.string
+
+}

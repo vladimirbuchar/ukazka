@@ -1,0 +1,16 @@
+{
+    "MENU_UN_LOGGINED_USER":"Unlogged user",
+    "MENU_SIGN_IN":"Sign in",
+    "MENU_SIGN_UP":"Sign up",
+    "MENU_MY_PROFILE":"My profile",
+    "MENU_MY_ORGANIZATIONS":"My organizations",
+    "MENU_MY_COURSES":"My courses",
+    "MENU_ABOUT_US":"About us",
+    "MENU_ABOUT_PRODUCT":"About product",
+    "MENU_ABOUT_PRICE":"Price",
+    "MENU_ABOUT_CONTACT":"Contact us",
+    "MENU_ABOUT_HELP":"Help and support",
+    "MENU_LOG_OUT":"Log out",
+    "MENU_DASHBOARD":"Dashboard"
+
+}

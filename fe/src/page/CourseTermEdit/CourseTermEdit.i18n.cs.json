@@ -1,0 +1,25 @@
+{
+    "COURSE_TERM_TITLE_EDIT":"Termín",
+    "COURSE_TERM_TAB_BASIC_INFORMATION":"Základní informace",
+    "COURSE_TERM_TAB_STUDENTS":"Studenti",
+    "COURSE_TERM_REGISTRATION_FROM": "Povolit zápisy do kurzu od",
+    "COURSE_TERM_REGISTRATION_TO":"Povolit zápisy do kurzu do",
+    "COURSE_TERM_TERM_FROM":"Začátek kurzu",
+    "COURSE_TERM_TERM_TO":"Konec kurzu",
+    "COURSE_TERM_BRANCH":"Pobočka",
+    "COURSE_TERM_CLASS_ROOM":"Třída",
+    "COURSE_TERM_TIME_START":"Čas začátku kurzu",
+    "COURSE_TERM_TIME_END":"Čas konce kurzu",
+    
+    "COURSE_TERM_MONDAY":"Pondělí",
+    "COURSE_TERM_TUESDAY":"Úterý",
+    "COURSE_TERM_WEDNESDAY":"Středa",
+    "COURSE_TERM_THURSDAY":"Čtvrtek",
+    "COURSE_TERM_FRIDAY":"Pátek",
+    "COURSE_TERM_SATURDAY":"Sobota",
+    "COURSE_TERM_SUNDAY":"Neděle",
+    "COURSE_LECTORS":"Lektor/ři temínu"
+
+
+
+}

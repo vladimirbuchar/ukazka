@@ -1,0 +1,10 @@
+{
+    "ONLINE":"Online kurz",
+    "ATTENDANCE": "Kurz s docházkou do školy",
+    "COMBINED":"Kurz s komibnací online a docházkové výuky",
+    "NEW":"Nový kurz",
+    "IN_PREPARATION":"Kurz v přípravě",
+    "OPEN":"Kurz otevřen pro studenty",
+    "ONGOING":"Probíhající kurz",
+    "CLOSED":"Zrušený kurz"
+}

@@ -1,0 +1,23 @@
+{
+    "COURSE_TITLE_EDIT": "Kurz: ",
+    "COURSE_TAB_BASIC_INFORMATION":"Základní informace",
+    "COURSE_TAB_MATERIAL":"Materiály ke kurzu",
+    "COURSE_TAB_TERM":"Termíny kurzu",
+    "COURSE_NAME":"Jméno kurzu",
+    "COURSE_DESCRIPTION":"Popis kurzu",
+    "COURSE_IS_PRIVATE_COURSE":"Soukromý kurz",
+    "COURSE_DEFAULT_MINIMUM_STUDENTS":"Minimální počet studentů",
+    "COURSE_DEFAULT_MAXIMUM_STUDENTS":"Maximální počet studentů",
+    "COURSE_PRICE":"Konečná cena kurzu",
+    "COURSE_SALE":"Sleva",
+    "COURSE_BASIC_INFORMATION_SAVE":"Uložit",
+    "COURSE_TYPE":"Typ kurzu",
+    "COURSE_STATUS":"Stav kurzu",
+    "COURSE_TERM_BUTTON_ADD":"Přidat termín",
+    "COURSE_TERM_DELETE_TITLE":"Opravdu si přejete smazat",
+    "COURSE_TERM_DELETE_CONTENT":"Opravdu si přejete smazat termín",
+    "COURSE_TERM_DELETE":"Smazat",
+    "COURSE_TERM_EDIT":"Upravit"
+
+
+}

@@ -1,0 +1,14 @@
+{
+    "ORGANIZATION_EMPTY_DATA":"Nejste v žádné organizaci.",
+    "ORGANIZATION_BUTTON_ADD":"Nová organizace",
+    "ORGANIZATION_BUTTON_FIND":"Vyhledat existujicí organizaci",
+    "ORGANIZATION_DELETE":"Smazat",
+    "ORGANIZATION_EDIT":"Editovat",
+    "ORGANIZATION_COURSE":"Kurzy",
+    "ORGANIZATION_BRANCH":"Pobočky",
+    "ORGANIZATION_LEAVE":"Odejít",
+    "ORGANIZATION_DELETE_TITLE":"Odstranit organizaci",
+    "ORGANIZATION_DELETE_CONTENT":"Opravdu si přejete odstranit organizaci {name}?",
+    "ORGANIZATION_LEAVE_CONTENT":"Opravdu si přejete opustit organizaci {name}?",
+    "ORGANIZATION_LEAVE_TITLE":"Opustit organizaci"
+}

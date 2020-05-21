@@ -1,0 +1,5 @@
+{
+    "VALIDATION_REQUIRED":"This field is required",
+    "VALIDATION_EMAIL":"Email is not valid",
+    "VALIDATION_PASSWORD":"Password mismatch"
+}
