@@ -46,5 +46,6 @@ namespace EduFacade.OraganizationRoleFacade
         Guid GetOrganizationIdByQuestion(Guid questionId);
         Guid GetOrganizationByAnswer(Guid answerId);
         GetUserOrganizationRoleDto GetUserOrganizationRole(Guid userId, Guid organizationId);
+        Guid GetOrganizationByStudentId(Guid studentId);
     }
 }

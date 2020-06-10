@@ -28,6 +28,7 @@ import OrganizationPermition from './../../WebModel/Shared/OrganizationPermition
 export default function OrganizationEdit(props: any) {
   const { t } = useTranslation();
   const [course, setCourse] = React.useState([]);
+  const [bankOfQuestion, setBankOfQuestion] = React.useState([]);
   let id: string;
   const classes = useStyles();
   const [valueTab, setValueTab] = React.useState(0);
@@ -77,6 +78,21 @@ export default function OrganizationEdit(props: any) {
       });
       setUserInOrganization(course);
     });
+  }
+  const realoadBankOfQuestion = async ()=>
+  {
+    setValueTab(4);
+    if (id !== "") {
+      axiosInstance.get("webportal/BankOfQuestion/GetBankOfQuestionInOrganization", {
+        params: {
+          accessToken: GetUserToken(),
+          organizationId: id
+        }
+      }).then(function (response: any) {
+        setBankOfQuestion(response.data.data);
+
+      })
+    }
   }
 
   const reloadCourse = async () => {
@@ -312,14 +328,16 @@ export default function OrganizationEdit(props: any) {
         <PageName title={t("ORGANIZATION_TITLE_USERS") + " - " + organizatioName} />}
       {valueTab === 3 &&
         <PageName title={t("ORGANIZATION_TITLE_COURSE") + " - " + organizatioName} />}
+        {valueTab === 4 &&
+        <PageName title={t("ORGANIZATION_TITLE_BANK_OF_QUESTION") + " - " + organizatioName} />}
       <Paper>
         <AppBar position="static">
           <Tabs value={valueTab} onChange={handleChangeTab} >
             <Tab label={t("ORGANIZATION_TAB_BASIC_INFORMATION")} {...a11yProps(0)} disabled={!(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator)} className={!(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator) ? classes.dn : ""} />
             <Tab label={t("ORGANIZATION_TAB_BRANCH")} {...a11yProps(1)} disabled={id === "" || !(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator)} onClick={reloadBranch} className={!(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator) ? classes.dn : ""} />
             <Tab label={t("ORGANIZATION_TAB_USERS")} {...a11yProps(2)} disabled={id === "" || !(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator)} onClick={reloadUserInOrganization} className={!(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator) ? classes.dn : ""} />
-
             <Tab label={t("ORGANIZATION_COURSE")} {...a11yProps(3)} disabled={id === ""} onClick={reloadCourse} />
+            <Tab label={t("ORGANIZATION_BANK_OF_QUESTION")} {...a11yProps(4)} disabled={id === ""} onClick={realoadBankOfQuestion} />
           </Tabs>
         </AppBar>
         {(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator) &&
@@ -465,6 +483,27 @@ export default function OrganizationEdit(props: any) {
             ReplaceContent={"name"}
             DeleteButtonText={t("ORGANIZATION_COURSE_DELETE")}
             EditParams={"organizationId="+GetUrlParam("id")}
+          />
+        </TabPanel>
+        
+        <TabPanel value={valueTab} index={4}>
+          <CustomTable AddLinkUri={"/bankofquestion/add?organizationId=" + id} AddLinkText={t("ORGANIZATION_BANK_OF_QUESTION_ADD")} Columns={
+            [{ title: t("ORGANIZATION_BANK_OF_QUESATION_NAME"), field: 'name' },]
+          }
+            ShowAddButton={(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator || permitions.isCourseAdministrator)}
+            ShowEdit={(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator || permitions.isCourseAdministrator || permitions.isCourseEditor)}
+            ShowDelete={(permitions.isOrganizationOwner || permitions.isOrganizationAdministrator || permitions.isCourseAdministrator)}
+            Data={bankOfQuestion}
+            EditLinkUri={"/bankofquestion/edit"}
+            EditLinkText={t("ORGANIZATION_BANK_OF_QUESTION_EDIT")}
+            DeleteUrl={"webportal/BankOfQuestion/DeleteBankOfQuestion"}
+            DeleteDialogTitle={t("ORGANIZATION_BANK_OF_QUESTION_DELETE_TITLE")}
+            DeleteDialogContent={t("ORGANIZATION_BANK_OF_QUESTION_DELETE_CONTENT")}
+            DeleteParamIdName={"bankOfQuestionId"}
+            onReload={realoadBankOfQuestion}
+            ReplaceContent={"name"}
+            DeleteButtonText={t("ORGANIZATION_BANK_OF_QUESTION_DELETE")}
+            EditParams={"bankOfQuestionId="+GetUrlParam("id")}
           />
         </TabPanel>
       </Paper>

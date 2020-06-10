@@ -10,5 +10,6 @@ namespace EduRepository.CourseChapterRepository
         List<GetAllLessonInCourse> GetAllLessonInCourse(Guid courseId);
         GetCourseLessonDetail GetCourseLessonDetail(Guid courseLessonId);
         void UpdateCourseLesson(UpdateCourseLesson updateCourseLesson);
+        void UpdatePositionCourseLesson(UpdatePositionCourseLesson updatePositionCourseLesson);
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WebModel.CourseLesson;
 using WebModel.Shared;
 
@@ -48,13 +49,13 @@ namespace EduApi.Controllers.WebPortal.CourseLesson
                 return SendSystemError(e);
             }
         }
-        [HttpGet("{accessToken}/{courseId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetAllLessonInCourseDto>), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetAllLessonInCourse(string accessToken, Guid courseId)
+        public ActionResult GetAllLessonInCourse([FromQuery]string accessToken, [FromQuery]Guid courseId)
         {
             Test(new TestRequestSettings()
             {
@@ -66,13 +67,13 @@ namespace EduApi.Controllers.WebPortal.CourseLesson
             return SendResponse(_courseLessonFacade.GetAllLessonInCourse(courseId));
         }
 
-        [HttpGet("{accessToken}/{courseLessonId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(GetCourseLessonDetailDto), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetCourseLessonDetail(string accessToken, Guid courseLessonId)
+        public ActionResult GetCourseLessonDetail([FromQuery]string accessToken, [FromQuery]Guid courseLessonId)
         {
             Test(new TestRequestSettings()
             {
@@ -136,5 +137,34 @@ namespace EduApi.Controllers.WebPortal.CourseLesson
                 return SendSystemError(e);
             }
         }
+        [HttpPut]
+        [ProducesResponseType(typeof(Result), 200)]
+        [ProducesResponseType(typeof(void), 404)]
+        [ProducesResponseType(typeof(SystemError), 500)]
+        [ProducesResponseType(typeof(Result), 400)]
+        [ProducesResponseType(typeof(void), 403)]
+        public ActionResult UpdatePositionCourseLesson(UpdatePositionCourseLessonDto updatePositionCourseLesson)
+        {
+            try
+            {
+                Test(new TestRequestSettings()
+                {
+                    AccessToken = updatePositionCourseLesson.UserAccessToken,
+                    OrganizationId = GetOrganizationByCourseLesson(Guid.Parse(updatePositionCourseLesson.Ids.First())),
+                    OperationType = new OperationType(new UpdateCourseLessonOperation()),
+                    Request = updatePositionCourseLesson,
+                    TestRequest = true,
+                    ValidateAccessToken = true
+                });
+
+                _courseLessonFacade.UpdatePositionCourseLesson(updatePositionCourseLesson);
+                return SendResponse();
+            }
+            catch (Exception e)
+            {
+                return SendSystemError(e);
+            }
+        }
+
+        }
     }
-}

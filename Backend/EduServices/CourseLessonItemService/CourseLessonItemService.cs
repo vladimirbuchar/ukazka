@@ -14,14 +14,14 @@ namespace EduServices.CourseChapterService
         {
             _courseLessonItemRepository = courseLessonItemRepository;
         }
-        public void AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem)
+        public Guid AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem)
         {
-            _courseLessonItemRepository.AddCourseLessonItem(addCourseLessonItem);
+            return _courseLessonItemRepository.AddCourseLessonItem(addCourseLessonItem);
         }
 
         public void DeleteCourseLessonItem(Guid courseLessonItemId)
         {
-            _courseLessonItemRepository.DeleteEntity<CourseItem>(courseLessonItemId);
+            _courseLessonItemRepository.DeleteEntity<CourseLessonItem>(courseLessonItemId);
         }
 
         public List<GetCourseLessonItems> GetCourseLessonItems(Guid courseLessonId)

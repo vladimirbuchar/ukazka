@@ -25,10 +25,7 @@ export default function SignUp() {
     axiosInstance.post("web/User/AddUser",{
       userPassword: password1, userPassword2:password2,userEmail:email,person:{
       firstName:firstName,lastName:lastName
-    }}).then(function(response:any){
-      alert("aaabbb");
-      console.log(response);
-    });
+    }});
     return false;
   }
   const handleChange = (e: any) => {

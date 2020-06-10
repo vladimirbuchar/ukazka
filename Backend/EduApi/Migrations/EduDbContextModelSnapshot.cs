@@ -155,6 +155,50 @@ namespace EduApi.Migrations
                     b.ToTable("Cb_Country");
                 });
 
+            modelBuilder.Entity("Model.Tables.CodeBook.CourseLessonItemTemplate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsChanged")
+                        .HasColumnName("IsChanged")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnName("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSystemObject")
+                        .HasColumnName("IsSystemObject")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnName("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SystemIdentificator")
+                        .HasColumnName("SystemIdentificator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnName("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cb_CourseLessonItemTemplate");
+                });
+
             modelBuilder.Entity("Model.Tables.CodeBook.CourseStatus", b =>
                 {
                     b.Property<Guid>("Id")
@@ -772,7 +816,48 @@ namespace EduApi.Migrations
                     b.ToTable("Edu_Course");
                 });
 
-            modelBuilder.Entity("Model.Tables.Edu.CourseItem", b =>
+            modelBuilder.Entity("Model.Tables.Edu.CourseLesson", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BasicInformationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsChanged")
+                        .HasColumnName("IsChanged")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSystemObject")
+                        .HasColumnName("IsSystemObject")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SystemIdentificator")
+                        .HasColumnName("SystemIdentificator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasicInformationId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Edu_CourseLesson");
+                });
+
+            modelBuilder.Entity("Model.Tables.Edu.CourseLessonItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -783,6 +868,9 @@ namespace EduApi.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CourseLessonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CourseLessonItemTemplateId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Html")
@@ -811,49 +899,13 @@ namespace EduApi.Migrations
 
                     b.HasIndex("CourseLessonId");
 
+                    b.HasIndex("CourseLessonItemTemplateId");
+
                     b.HasIndex("SystemIdentificator")
                         .IsUnique()
                         .HasFilter("[SystemIdentificator] IS NOT NULL");
 
-                    b.ToTable("Edu_CourseItem");
-                });
-
-            modelBuilder.Entity("Model.Tables.Edu.CourseLesson", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BasicInformationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CourseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsChanged")
-                        .HasColumnName("IsChanged")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnName("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSystemObject")
-                        .HasColumnName("IsSystemObject")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SystemIdentificator")
-                        .HasColumnName("SystemIdentificator")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasicInformationId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Edu_CourseLesson");
+                    b.ToTable("Edu_CourseLessonItem");
                 });
 
             modelBuilder.Entity("Model.Tables.Edu.CourseRate", b =>
@@ -1139,6 +1191,43 @@ namespace EduApi.Migrations
                         .HasFilter("[SystemIdentificator] IS NOT NULL");
 
                     b.ToTable("Cb_Email");
+                });
+
+            modelBuilder.Entity("Model.Tables.Edu.FileRepository", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsChanged")
+                        .HasColumnName("IsChanged")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSystemObject")
+                        .HasColumnName("IsSystemObject")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("ObjectOwner")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OriginalFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SystemIdentificator")
+                        .HasColumnName("SystemIdentificator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Edu_FileRepository");
                 });
 
             modelBuilder.Entity("Model.Tables.Edu.Inquiry", b =>
@@ -2555,17 +2644,6 @@ namespace EduApi.Migrations
                         .HasForeignKey("StudentCountId");
                 });
 
-            modelBuilder.Entity("Model.Tables.Edu.CourseItem", b =>
-                {
-                    b.HasOne("Model.Tables.Shared.BasicInformation", "BasicInformation")
-                        .WithMany()
-                        .HasForeignKey("BasicInformationId");
-
-                    b.HasOne("Model.Tables.Edu.CourseLesson", null)
-                        .WithMany("CourseItem")
-                        .HasForeignKey("CourseLessonId");
-                });
-
             modelBuilder.Entity("Model.Tables.Edu.CourseLesson", b =>
                 {
                     b.HasOne("Model.Tables.Shared.BasicInformation", "BasicInformation")
@@ -2575,6 +2653,21 @@ namespace EduApi.Migrations
                     b.HasOne("Model.Tables.Edu.Course", null)
                         .WithMany("CourseLesson")
                         .HasForeignKey("CourseId");
+                });
+
+            modelBuilder.Entity("Model.Tables.Edu.CourseLessonItem", b =>
+                {
+                    b.HasOne("Model.Tables.Shared.BasicInformation", "BasicInformation")
+                        .WithMany()
+                        .HasForeignKey("BasicInformationId");
+
+                    b.HasOne("Model.Tables.Edu.CourseLesson", null)
+                        .WithMany("CourseItem")
+                        .HasForeignKey("CourseLessonId");
+
+                    b.HasOne("Model.Tables.CodeBook.CourseLessonItemTemplate", "CourseLessonItemTemplate")
+                        .WithMany()
+                        .HasForeignKey("CourseLessonItemTemplateId");
                 });
 
             modelBuilder.Entity("Model.Tables.Edu.CourseRate", b =>
@@ -2602,8 +2695,8 @@ namespace EduApi.Migrations
                         .WithMany()
                         .HasForeignKey("BasicInformationId");
 
-                    b.HasOne("Model.Tables.Edu.ClassRoom", null)
-                        .WithMany("CourseTerm")
+                    b.HasOne("Model.Tables.Edu.ClassRoom", "ClassRoom")
+                        .WithMany()
                         .HasForeignKey("ClassRoomId");
 
                     b.HasOne("Model.Tables.Edu.Course", null)

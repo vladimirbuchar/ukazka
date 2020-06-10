@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using WebModel.CourseLectorDto;
 using WebModel.Shared;
 
 namespace WebModel.CourseTermDto
@@ -11,6 +13,7 @@ namespace WebModel.CourseTermDto
         public DateTime RegistrationFrom { get; set; }
         public DateTime RegistrationTo { get; set; }
         public Guid ClassRoomId { get; set; }
+        public Guid BranchId { get; set; }
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
         public bool Wednesday { get; set; }
@@ -27,5 +30,6 @@ namespace WebModel.CourseTermDto
         public int MinimumStudent { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public List<Guid> Lector { get; set; }
     }
 }

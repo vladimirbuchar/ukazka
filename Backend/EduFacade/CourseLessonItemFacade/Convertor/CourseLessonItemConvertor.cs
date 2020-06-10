@@ -13,7 +13,8 @@ namespace EduFacade.CourseLessonItemFacade.Convertor
                 CourseLessonId = addCourseLessonItemDto.CourseLessonId,
                 Description = addCourseLessonItemDto.Description,
                 Name = addCourseLessonItemDto.Name,
-                Html = addCourseLessonItemDto.Html
+                Html = addCourseLessonItemDto.Html,
+                TemplateId = addCourseLessonItemDto.TemplateId
             };
         }
 
@@ -39,7 +40,12 @@ namespace EduFacade.CourseLessonItemFacade.Convertor
                 Description = getCourseLessonItemDetail.Description,
                 Name = getCourseLessonItemDetail.Name,
                 Id = getCourseLessonItemDetail.Id,
-                Html = getCourseLessonItemDetail.Html
+                Html = getCourseLessonItemDetail.Html,
+                CourseLessonItemTemplateId = getCourseLessonItemDetail.CourseLessonItemTemplateId,
+                TemplateIdentificator = getCourseLessonItemDetail.TemplateIdentificator,
+                FileName = getCourseLessonItemDetail.FileName,
+                OriginalFileName = getCourseLessonItemDetail.OriginalFileName,
+                FileId = getCourseLessonItemDetail.FileId
             };
         }
 

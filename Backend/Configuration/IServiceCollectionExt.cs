@@ -22,6 +22,7 @@ using EduFacade.CourseStudentFacade;
 using EduFacade.CourseStudentFacade.Convertor;
 using EduFacade.CourseTermFacade;
 using EduFacade.CourseTermFacade.Convertor;
+using EduFacade.FileUploadFacade;
 using EduFacade.LicenseFacade;
 using EduFacade.NotificationFacade;
 using EduFacade.NotificationFacade.Convertor;
@@ -44,6 +45,7 @@ using EduRepository.CourseRepository;
 using EduRepository.CourseStudentRepository;
 using EduRepository.CourseTermRepository;
 using EduRepository.EmailRepository;
+using EduRepository.FileUploadRepository;
 using EduRepository.NotificationRepository;
 using EduRepository.OrganizationRepository;
 using EduRepository.OrganizationRoleRepository;
@@ -61,6 +63,7 @@ using EduServices.CourseLectorService;
 using EduServices.CourseService;
 using EduServices.CourseStudentService;
 using EduServices.CourseTermService;
+using EduServices.FileUploadService;
 using EduServices.LicenseService;
 using EduServices.NotificationService;
 using EduServices.OrganizationRoleService;
@@ -221,6 +224,12 @@ namespace Configuration
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<INotificationFacade, NotificationFacade>();
             services.AddScoped<INotificationConvertor, NotificationConvertor>();
+        }
+        public static void RegisterFileUpload(this IServiceCollection services)
+        {
+            services.AddScoped<IFileUploadFacade, FileUploadFacade>();
+            services.AddScoped<IFileUploadService, FileUploadService>();
+            services.AddScoped<IFileUploadRepository, FileUploadRepository>();
         }
 
     }

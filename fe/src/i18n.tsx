@@ -29,6 +29,11 @@ import codebookcs from './component/CodeBook/CodeBook.i18n.cs.json';
 import coursetermeditcs  from './page/CourseTermEdit/CourseTermEdit.i18n.cs.json';
 import coursepricecs from './component/CoursePrice/CoursePrice.i18n.cs.json';
 import coursestudentcountcs from './component/CourseStudentCount/CourseStudentCount.i18.cs.json';
+import addstudenttotermcs from './page/AddStudentToTerm/AddStudentToTerm.i18n.cs.json' ;
+import courseleesoneditcs from './page/CourseLessonEdit/CourseLessonEdit.i18n.cs.json';
+import courselessitemeditcs from './page/CourseLessonItemEdit/CourseLessonItemEdit.i18n.cs.json';
+import fileuploadcs from './component/FileUpload/FileUpload.i18n.cs.json';
+import bankofquestioncs from './page/BankOfQuestionEdit/BankOfQuestionEdit.i18n.cs.json';
 i18n.use(LanguageDetector).init({
   // we init with resources
   resources: {
@@ -37,7 +42,7 @@ i18n.use(LanguageDetector).init({
       
     }, 
     cs:{
-        translations:Object.assign({},signincs,menucs,signupcs,validationcs,myprofilecs,organizationcs,dashboardcs,organizationeditcs,branchcs,classroomcs,questiondialogcs,myorgsanizationscs,addUserToOrgnizationCs,organizationRoleCs,notificationlistcs,courseeditcs,addresscs,contactcs,accessforbidencs,savebuttonscs,codebookcs,coursetermeditcs,coursepricecs,coursestudentcountcs)
+        translations:Object.assign({},signincs,menucs,signupcs,validationcs,myprofilecs,organizationcs,dashboardcs,organizationeditcs,branchcs,classroomcs,questiondialogcs,myorgsanizationscs,addUserToOrgnizationCs,organizationRoleCs,notificationlistcs,courseeditcs,addresscs,contactcs,accessforbidencs,savebuttonscs,codebookcs,coursetermeditcs,coursepricecs,coursestudentcountcs,addstudenttotermcs,courseleesoneditcs,courselessitemeditcs,fileuploadcs,bankofquestioncs)
     } 
   },
   fallbackLng: "en",

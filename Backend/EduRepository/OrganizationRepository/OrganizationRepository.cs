@@ -212,5 +212,13 @@ namespace EduRepository.OrganizationRepository
                 new SqlParameter("@answerId",answerId)
             }).FirstOrDefault().Id;
         }
+
+        public Guid GetOrganizationByStudent(Guid studentId)
+        {
+            return CallSqlFunction<OrganizationId>("GetOrganizationByStudent", new List<SqlParameter>()
+            {
+                new SqlParameter("@studentId",studentId)
+            }).FirstOrDefault().Id;
+        }
     }
 }

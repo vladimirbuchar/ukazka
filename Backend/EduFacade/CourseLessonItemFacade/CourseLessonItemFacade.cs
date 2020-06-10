@@ -17,10 +17,10 @@ namespace EduFacade.CourseLessonItemFacade
             _courseLessonItemConvertor = courseLessonItemConvertor;
         }
 
-        public void AddCourseLessonItem(AddCourseLessonItemDto addCourseLessonItemDto)
+        public Guid AddCourseLessonItem(AddCourseLessonItemDto addCourseLessonItemDto)
         {
             AddCourseLessonItem addCourseLessonItem = _courseLessonItemConvertor.ConvertToBussinessEntity(addCourseLessonItemDto);
-            _courseLessonItemService.AddCourseLessonItem(addCourseLessonItem);
+            return _courseLessonItemService.AddCourseLessonItem(addCourseLessonItem);
         }
         public void DeleteCourseLessonItem(Guid courseLessonItemId)
         {

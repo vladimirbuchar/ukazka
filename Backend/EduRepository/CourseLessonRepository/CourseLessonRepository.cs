@@ -44,7 +44,7 @@ namespace EduRepository.CourseChapterRepository
             {
                 new SqlParameter("@courseId", courseId)
             };
-            return CallSqlFunction<GetAllLessonInCourse>("GetAllLessonInCourse", sqlParameters);
+            return CallSqlFunction<GetAllLessonInCourse>("GetAllLessonInCourse", sqlParameters).OrderBy(x => x.Position).ToList() ;
         }
 
         public GetCourseLessonDetail GetCourseLessonDetail(Guid courseLessonId)
@@ -54,6 +54,16 @@ namespace EduRepository.CourseChapterRepository
                 new SqlParameter("@courseLessonId", courseLessonId)
             };
             return CallSqlFunction<GetCourseLessonDetail>("GetCourseLessonDetail", sqlParameters).FirstOrDefault();
+        }
+
+        public void UpdatePositionCourseLesson(UpdatePositionCourseLesson updatePositionCourseLesson)
+        {
+            List<SqlParameter> sqlParameters = new List<SqlParameter>
+            {
+                new SqlParameter("@CourseLessonId", updatePositionCourseLesson.Id),
+                new SqlParameter("@NewPosition", updatePositionCourseLesson.NewPosition)
+            };
+            CallSqlProcedure("UpdatePositionCourseLesson", sqlParameters);
         }
     }
 }

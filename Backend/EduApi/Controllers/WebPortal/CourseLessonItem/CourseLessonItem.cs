@@ -38,23 +38,22 @@ namespace EduApi.Controllers.WebPortal.CourseLessonItem
                     OperationType = new OperationType(new AddCourseLessonItemOperation()),
                     Request = courseLessonItemCreateDto,
                     TestRequest = true,
-                    ValidateAccessToken = true
+                    ValidateAccessToken = true,
                 });
-                _courseLessonItemFacade.AddCourseLessonItem(courseLessonItemCreateDto);
-                return SendResponse();
+                return SendResponse(_courseLessonItemFacade.AddCourseLessonItem(courseLessonItemCreateDto));
             }
             catch (Exception e)
             {
                 return SendSystemError(e);
             }
         }
-        [HttpGet("{accessToken}/{courseLessonId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetCourseLessonItemsDto>), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetCourseLessonItems(string accessToken, Guid courseLessonId)
+        public ActionResult GetCourseLessonItems([FromQuery]string accessToken, [FromQuery]Guid courseLessonId)
         {
             Test(new TestRequestSettings()
             {
@@ -66,13 +65,13 @@ namespace EduApi.Controllers.WebPortal.CourseLessonItem
             return SendResponse(_courseLessonItemFacade.GetCourseLessonItems(courseLessonId));
         }
 
-        [HttpGet("{accessToken}/{courseLessonItemId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(GetCourseLessonItemDetailDto), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetCourseLessonItemDetail(string accessToken, Guid courseLessonItemId)
+        public ActionResult GetCourseLessonItemDetail([FromQuery]string accessToken, [FromQuery]Guid courseLessonItemId)
         {
             Test(new TestRequestSettings()
             {

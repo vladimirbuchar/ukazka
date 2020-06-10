@@ -38,5 +38,15 @@
     "ORGANIZATION_COURSE_DELETE":"Smazat kurz",
     "ORGANIZATION_TITLE_BRANCH":"Pobočky",
     "ORGANIZATION_TITLE_USERS":"Uživatelé",
-    "ORGANIZATION_TITLE_COURSE":"Nabídka kurzů"
+    "ORGANIZATION_TITLE_COURSE":"Nabídka kurzů",
+    "ORGANIZATION_TITLE_BANK_OF_QUESTION":"Banka otázek",
+    "ORGANIZATION_BANK_OF_QUESTION":"Banka otázek",
+    "ORGANIZATION_BANK_OF_QUESTION_ADD":"Přidat banku otázek",
+    "ORGANIZATION_BANK_OF_QUESATION_NAME":"Banka otázek",
+    "ORGANIZATION_BANK_OF_QUESTION_EDIT":"Upravit",
+    "ORGANIZATION_BANK_OF_QUESTION_DELETE_TITLE":"Smazat bamku otázek",
+    "ORGANIZATION_BANK_OF_QUESTION_DELETE_CONTENT":"Opravdu si přejete odstranit banku otázek {name}",
+    "ORGANIZATION_BANK_OF_QUESTION_DELETE":"Smazat"
+
+
 }

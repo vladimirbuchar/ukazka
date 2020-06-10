@@ -11,5 +11,6 @@ namespace EduFacade.CourseChapterFacade
         void DeleteCourseLesson(Guid courseLessonId);
         void UpdateCourseLesson(UpdateCourseLessonDto updateCourseLessonDto);
         GetCourseLessonDetailDto GetCourseLessonDetail(Guid courseLessonId);
+        void UpdatePositionCourseLesson(UpdatePositionCourseLessonDto updatePositionCourseLesson);
     }
 }

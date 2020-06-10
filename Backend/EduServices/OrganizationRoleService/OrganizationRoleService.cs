@@ -141,5 +141,10 @@ namespace EduServices.OrganizationRoleService
         {
             _organizationRoleRepository.UpdateUserInOrganizationRole(updateUserInOrganizationRole);
         }
+
+        public Guid GetOrganizationByStudentId(Guid studentId)
+        {
+            return _organizationRepository.GetOrganizationByStudent(studentId);
+        }
     }
 }

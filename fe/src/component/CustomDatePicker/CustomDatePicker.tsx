@@ -10,14 +10,15 @@ import {
 } from '@material-ui/pickers';
 
 export default function CustomDatePicker(props:any) {
-    const {selectedDate,onChangeDate,label} = props;
+    const {selectedDate,onChangeDate,label,disablePast,minDate} = props;
     
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid>
         <KeyboardDatePicker
           fullWidth
-          disablePast
+          disablePast={disablePast}
+          minDate={minDate}
           disableToolbar
           variant="inline"
           format="dd.MM.yyyy"
@@ -39,6 +40,8 @@ export default function CustomDatePicker(props:any) {
 CustomDatePicker.prototype ={
     selectedDate: PropTypes.any,
     onChangeDate: PropTypes.func,
-    label: PropTypes.string
+    label: PropTypes.string,
+    disablePast: PropTypes.bool,
+    minDate: PropTypes.any
 
 }

@@ -78,6 +78,10 @@ namespace EduApi.Controllers.WebPortal
         {
             return _organizationRoleFacade.GetOrganizationIdByCourseTerm(courseTermtermId);
         }
+        protected Guid GetOrganizationByStudentId(Guid studentId)
+        {
+            return _organizationRoleFacade.GetOrganizationByStudentId(studentId);
+        }
 
         /// <summary>
         /// get organization guid 

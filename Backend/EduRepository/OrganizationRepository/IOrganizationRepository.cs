@@ -25,5 +25,6 @@ namespace EduRepository.OrganizationRepository
         Guid GetOrganizationIdByQuestion(Guid questionId);
         Guid GetOrganizationByAnswer(Guid answerId);
         HashSet<GetOrganizationAddress> GetOrganizationAddress(Guid organizationId);
+        Guid GetOrganizationByStudent(Guid studentId);
     }
 }

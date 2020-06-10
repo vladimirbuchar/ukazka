@@ -8,7 +8,7 @@ namespace EduRepository.CourseTermRepository
     {
         IEnumerable<GetAllTermInCourse> GetAllTermInCourse(Guid courseId);
         GetCourseTermDetail GetCourseTermDetail(Guid courseTermId);
-        void AddCourseTerm(AddCourseTerm addCourseTerm);
+        Guid AddCourseTerm(AddCourseTerm addCourseTerm);
         void UpdateCourseTerm(UpdateCourseTerm updateCourseTerm);
     }
 }

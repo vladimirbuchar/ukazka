@@ -48,6 +48,10 @@ namespace EduFacade.CodeBookFacade
                     {
                         return _codeBookConvertor.ConvertToWebModel(_codeBookService.GetCodeBookItems<AnswerMode>());
                     }
+                case "cb_courselessonitemtemplate":
+                    {
+                        return _codeBookConvertor.ConvertToWebModel(_codeBookService.GetCodeBookItems<CourseLessonItemTemplate>());
+                    }
             }
             return null;
         }

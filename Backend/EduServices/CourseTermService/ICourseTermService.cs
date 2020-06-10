@@ -12,7 +12,7 @@ namespace EduServices.CourseTermService
         /// </summary>
         /// <param name="courseId"></param>
         /// <param name="courseTerm"></param>
-        void AddCourseTerm(AddCourseTerm addCourse);
+        Guid AddCourseTerm(AddCourseTerm addCourse);
 
         /// <summary>
         /// update exists trem in course

@@ -20,5 +20,5 @@ export default function SaveButtons(props: any) {
 }
 SaveButtons.prototype = {
     backUrl: PropTypes.string,
-    onSave: PropTypes.func
+    onSave: PropTypes.func.isRequired
 }

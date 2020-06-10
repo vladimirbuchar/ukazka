@@ -6,5 +6,7 @@
     "IN_PREPARATION":"Kurz v přípravě",
     "OPEN":"Kurz otevřen pro studenty",
     "ONGOING":"Probíhající kurz",
-    "CLOSED":"Zrušený kurz"
+    "CLOSED":"Zrušený kurz",
+    "BASIC_TEMPLATE":"Základní šablona",
+    "BASIC_TEMPLATE_IMAGE":"Základní šablona s obrázkem"
 }

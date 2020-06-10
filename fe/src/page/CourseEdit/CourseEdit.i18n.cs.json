@@ -17,7 +17,11 @@
     "COURSE_TERM_DELETE_TITLE":"Opravdu si přejete smazat",
     "COURSE_TERM_DELETE_CONTENT":"Opravdu si přejete smazat termín",
     "COURSE_TERM_DELETE":"Smazat",
-    "COURSE_TERM_EDIT":"Upravit"
+    "COURSE_TERM_EDIT":"Upravit",
+    "CORSE_TERM_FROM":"Od",
+    "CORSE_TERM_TO":"Do",
+    "COURSE_ADD_LESSON":"Přidat lekci",
+    "COURSE_EDIT_LESSON":"Editovat"
 
 
 }

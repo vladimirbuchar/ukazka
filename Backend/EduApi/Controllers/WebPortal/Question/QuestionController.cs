@@ -51,13 +51,13 @@ namespace EduApi.Controllers.WebPortal.Question
             }
         }
 
-        [HttpGet("{accessToken}/{bankOfQuestionId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetQuestionsInBankDto>), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetQuestionsInBank(string accessToken, Guid bankOfQuestionId)
+        public ActionResult GetQuestionsInBank([FromQuery]string accessToken, [FromQuery]Guid bankOfQuestionId)
         {
             try
             {
@@ -75,13 +75,13 @@ namespace EduApi.Controllers.WebPortal.Question
                 return SendSystemError(e);
             }
         }
-        [HttpGet("{accessToken}/{questionId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(GetQuestionDetailDto), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetQuestionDetail(string accessToken, Guid questionId)
+        public ActionResult GetQuestionDetail([FromQuery]string accessToken, [FromQuery]Guid questionId)
         {
             try
             {

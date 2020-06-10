@@ -46,7 +46,7 @@ namespace EduApi.Controllers.WebPortal.CourseStudent
                     OperationType = new OperationType(new AddStudentToCourseOperation()),
                     ValidateAccessToken = true,
                 });
-                return SendResponse(_courseStudentFacade.AddStudentToCourseTerm(addStudentToCourseDto));
+                return SendResponse(_courseStudentFacade.AddStudentToCourseTerm(addStudentToCourseDto, GetOrganizationIdByCourseTerm(addStudentToCourseDto.CourseTermId)));
             }
             catch (Exception e)
             {
@@ -54,13 +54,13 @@ namespace EduApi.Controllers.WebPortal.CourseStudent
             }
         }
 
-        [HttpGet("{accessToken}/{courseTermId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetAllStudentInCourseTermDto>), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetAllStudentInCourseTerm(string accessToken, Guid courseTermId)
+        public ActionResult GetAllStudentInCourseTerm([FromQuery]string accessToken, [FromQuery]Guid courseTermId)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace EduApi.Controllers.WebPortal.CourseStudent
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult DeleteStudentFromCourseTerm(string accessToken, Guid studentId, Guid courseTermId)
+        public ActionResult DeleteStudentFromCourseTerm(string accessToken, Guid studentId)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace EduApi.Controllers.WebPortal.CourseStudent
                     AccessToken = accessToken,
                     ValidateAccessToken = true,
                     OperationType = new OperationType(new DeleteStudentFromCourseTermOperation()),
-                    OrganizationId = GetOrganizationIdByCourseTerm(courseTermId)
+                    OrganizationId = GetOrganizationByStudentId(studentId)
                 });
                 _courseStudentFacade.DeleteStudentFromCourseTerm(studentId);
                 return SendResponse();

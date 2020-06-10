@@ -22,7 +22,8 @@ export class AddCourseTerm {
     public UserAccessToken: string;
     public Name: string;
     public Description: string;
-    constructor(courseId:string, price:Price,activeFrom: Date,activeTo:Date,registrationFrom:Date,registrationTo:Date, minimumStudents:number, maximumStudents:number, classRoomId: string, monday:boolean, tuesday:boolean,wednesday:boolean, thursday:boolean, friday:boolean, saturday:boolean, sunday:boolean, timeFromId: string, timeToId:string, userAccessToken: string, name:string, description:string)
+    public Lector: [] ;
+    constructor(courseId:string, price:Price,activeFrom: Date,activeTo:Date,registrationFrom:Date,registrationTo:Date, minimumStudents:number, maximumStudents:number, classRoomId: string, monday:boolean, tuesday:boolean,wednesday:boolean, thursday:boolean, friday:boolean, saturday:boolean, sunday:boolean, timeFromId: string, timeToId:string, userAccessToken: string, name:string, description:string, lector:[])
     {
         this.CourseId = courseId;
         this.Price = price;
@@ -30,8 +31,8 @@ export class AddCourseTerm {
         this.ActiveTo = activeTo;
         this.RegistrationFrom = registrationFrom;
         this.RegistrationTo = registrationTo;
-        this.MaximumStudents =maximumStudents;
-        this.MinimumStudents = minimumStudents;
+        this.MaximumStudents = Number(maximumStudents);
+        this.MinimumStudents = Number(minimumStudents);
         this.ClassRoomId = classRoomId;
         this.Monday = monday;
         this.Tuesday = thursday;
@@ -45,5 +46,6 @@ export class AddCourseTerm {
         this.UserAccessToken = userAccessToken;
         this.Name = name;
         this.Description = description;
+        this.Lector =lector;
     }
 }

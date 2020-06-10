@@ -11,5 +11,6 @@ namespace EduServices.CourseChapterService
         List<GetAllLessonInCourse> GetAllLessonInCourse(Guid courseId);
         GetCourseLessonDetail GetCourseLessonDetail(Guid courseLessonId);
         void UpdateCourseLesson(UpdateCourseLesson updateCourseLesson);
+        void UpdatePositionCourseLesson(UpdatePositionCourseLesson updatePositionCourseLesson);
     }
 }

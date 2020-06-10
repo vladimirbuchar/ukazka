@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WebModel.Shared;
 
 namespace WebModel.CourseLessonItemDto
@@ -7,8 +8,10 @@ namespace WebModel.CourseLessonItemDto
     {
         public Guid CourseLessonId { get; set; }
         public string Html { get; set; }
+
         public string UserAccessToken { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public Guid TemplateId { get; set; }
     }
 }

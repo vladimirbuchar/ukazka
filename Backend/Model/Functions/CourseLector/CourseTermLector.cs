@@ -8,5 +8,6 @@ namespace Model.Functions.CourseLector
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }
+        public Guid LectorId { get; set; }
     }
 }

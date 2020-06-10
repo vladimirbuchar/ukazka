@@ -25,7 +25,7 @@ export default function CustomSelect(props:any) {
   CustomSelect.prototype ={
       label: PropTypes.string,
       data: PropTypes.array,
-      selectValue: PropTypes.string,
+      selectValue: PropTypes.any,
       onChangeValue: PropTypes.func,
       id: PropTypes.string,
       multiple: PropTypes.bool

@@ -8,7 +8,8 @@ namespace Model.Tables.Edu
     public class CourseLesson : TableModel
     {
         public virtual BasicInformation BasicInformation { get; set; }
+        public virtual int Position { get; set; } = 0;
 
-        public virtual IEnumerable<CourseItem> CourseItem { get; set; }
+        public virtual IEnumerable<CourseLessonItem> CourseItem { get; set; }
     }
 }

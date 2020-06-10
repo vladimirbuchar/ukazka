@@ -18,7 +18,13 @@
     "COURSE_TERM_FRIDAY":"Pátek",
     "COURSE_TERM_SATURDAY":"Sobota",
     "COURSE_TERM_SUNDAY":"Neděle",
-    "COURSE_LECTORS":"Lektor/ři temínu"
+    "COURSE_LECTORS":"Lektor/ři temínu",
+    "COURSE_TERM_ADD_STUDENT":"Přidat studenty",
+    "COURSE_TERM_STUDENT_FIRST_NAME":"Jméno studenta",
+    "COURSE_TERM_STUDENT_LAST_NAME":"Příjmení studenta",
+    "COURSE_TERM_STUDENT_DELETE_TITLE":"Opravdu odebrat",
+    "COURSE_TERM_STUDENT_DELETE_CONTENT":"Opravdu si přejete odebrat studenta z kurzu?",
+    "COURSE_TERM_STUDENT_DELETE":"Odebrat"
 
 
 

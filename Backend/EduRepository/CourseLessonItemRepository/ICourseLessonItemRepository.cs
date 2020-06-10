@@ -6,7 +6,7 @@ namespace EduRepository.CourseChapterRepository
 {
     public interface ICourseLessonItemRepository : IBaseRepository
     {
-        void AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem);
+        Guid AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem);
         List<GetCourseLessonItems> GetCourseLessonItems(Guid courseId);
         GetCourseLessonItemDetail GetCourseLessonItemDetail(Guid courseLessonItemId);
         void UpdateCourseLessonItem(UpdateCourseLessonItem updateCourseLessonItem);

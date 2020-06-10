@@ -8,5 +8,6 @@ namespace Model.Functions.CourseLessonItem
         public string Description { get; set; }
         public string Html { get; set; }
         public Guid CourseLessonId { get; set; }
+        public Guid TemplateId { get; set; }
     }
 }

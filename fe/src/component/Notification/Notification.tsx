@@ -19,7 +19,7 @@ export default function Notification() {
       });
     }
   }
-  setInterval(function () { loadNotifications(); }, 10000);
+  setInterval(function () { loadNotifications(); }, 100000);
   const resetNotification = () => {
     setNotificationCount(0)
   }

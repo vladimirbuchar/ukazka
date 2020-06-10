@@ -80,13 +80,12 @@ namespace EduFacade.CourseTermFacade.Convertor
                 Wednesday = getCourseTermDetail.Wednesday,
                 ActiveTo = getCourseTermDetail.ActiveTo,
                 ClassRoomId = getCourseTermDetail.ClassRoomId,
+                BranchId = getCourseTermDetail.BranchId,
                 CoursePrice = new WebModel.Shared.CoursePriceDto()
                 {
                     Price = getCourseTermDetail.Price,
                     Sale = getCourseTermDetail.Sale
                 },
-                Description = getCourseTermDetail.Description,
-                Name = getCourseTermDetail.Name,
                 Friday = getCourseTermDetail.Friday,
                 MaximumStudent = getCourseTermDetail.MaximumStudent,
                 MinimumStudent = getCourseTermDetail.MinimumStudent,
@@ -97,10 +96,10 @@ namespace EduFacade.CourseTermFacade.Convertor
                 Sunday = getCourseTermDetail.Sunday,
                 Thursday = getCourseTermDetail.Thursday,
                 TimeFromId = getCourseTermDetail.TimeFromId,
-                TimeFromValue = getCourseTermDetail.TimeFromValue,
                 TimeToId = getCourseTermDetail.TimeToId,
-                TimeToValue = getCourseTermDetail.TimeToValue,
-                Tuesday = getCourseTermDetail.Tuesday
+                Tuesday = getCourseTermDetail.Tuesday,
+                
+                
             };
         }
 

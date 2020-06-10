@@ -1,5 +1,6 @@
 ﻿using EduFacade.CourseLessonFacade.Convertor;
 using EduServices.CourseChapterService;
+using EduServices.CourseService;
 using Model.Functions.CourseLesson;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace EduFacade.CourseChapterFacade
     {
         private readonly ICourseLessonService _courseLessonService;
         private readonly ICourseLessonConvertor _courseLessonConvertor;
+        private readonly IBankOfQuestionService _bankOfQUestionService;
         public CourseLessonFacade(ICourseLessonService courseLessonService, ICourseLessonConvertor courseLessonConvertor)
         {
             _courseLessonService = courseLessonService;
@@ -22,6 +24,21 @@ namespace EduFacade.CourseChapterFacade
             AddCourseLesson addCourseLesson = _courseLessonConvertor.ConvertToBussinessEntity(addCourseLessonDto);
             _courseLessonService.AddCourseLesson(addCourseLesson);
         }
+
+        public void UpdatePositionCourseLesson(UpdatePositionCourseLessonDto updatePositionCourseLesson)
+        {
+            int position = 0;
+            foreach (var item in updatePositionCourseLesson.Ids)
+            {
+                _courseLessonService.UpdatePositionCourseLesson(new UpdatePositionCourseLesson()
+                {
+                    Id = Guid.Parse(item),
+                    NewPosition = position
+                }) ;
+                position++;
+            }
+        }
+
         public void DeleteCourseLesson(Guid courseLessonId)
         {
             _courseLessonService.DeleteCourseLesson(courseLessonId);

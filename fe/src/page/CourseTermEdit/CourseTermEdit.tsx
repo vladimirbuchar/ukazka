@@ -23,6 +23,7 @@ import CustomDatePicker from '../../component/CustomDatePicker/CustomDatePicker'
 import CustomSelect from '../../component/CustomSelect/CustomSelect';
 import CustomCheckBox from '../../component/CustomCheckBox/CustomCheckBox';
 import { AddCourseTerm } from '../../WebModel/CourseTerm/AddCourseTerm';
+import { UpdateCopurseTerm } from '../../WebModel/CourseTerm/UpdateCopurseTerm';
 
 
 
@@ -47,16 +48,17 @@ export default function CourseTermEdit() {
     const [courseTimeTo, setCourseTimeTo] = useState("");
     const [monday, setMonday] = useState(false);
     const [tuesday, setTuesday] = useState(false);
-    const [wednesday,setWednesday] = useState(false);
-    const [thursday,setThursday] = useState(false);
-    const [friday,setFriday] = useState(false);
-    const [saturday,setSaturday] = useState(false);
-    const [sunday,setSunday] = useState(false);
+    const [wednesday, setWednesday] = useState(false);
+    const [thursday, setThursday] = useState(false);
+    const [friday, setFriday] = useState(false);
+    const [saturday, setSaturday] = useState(false);
+    const [sunday, setSunday] = useState(false);
     const [lectorList, setLectorList] = useState([]);
-    const [lectors, setLectors] = useState([]);
-    const handleChangeLector = (event:any) => {
+    const [lectors, setLectors] = useState([] as any);
+    const [studentList, setStudentList] = useState([] as any);
+    const handleChangeLector = (event: any) => {
         setLectors(event.target.value as never[]);
-      };
+    };
 
     const handleChangeMonday = (event: any) => {
         setMonday(event.target.checked);
@@ -91,13 +93,12 @@ export default function CourseTermEdit() {
     const handleChangeClassRoom = (event: any) => {
         setClassRoom(event.target.value);
     }
-
-    const handleChangeBranch = (event: any) => {
-        setBranch(event.target.value);
+    const getClassRoomInBranch = (branchId:any) =>
+    {
         axiosInstance.get("webportal/ClassRoom/GetAllClassRoomInBranch", {
             params: {
                 accessToken: GetUserToken(),
-                branchId: event.target.value
+                branchId: branchId
             }
         }).then(function (response: any) {
             let classRoom = [] as any;
@@ -110,6 +111,12 @@ export default function CourseTermEdit() {
             });
             setClassRoomList(classRoom);
         });
+    }
+
+    const handleChangeBranch = (event: any) => {
+        setBranch(event.target.value);
+        getClassRoomInBranch(event.target.value);
+        
     }
 
     const handleCourseTermToChange = (date: Date) => {
@@ -144,6 +151,17 @@ export default function CourseTermEdit() {
     const handleChangeTab = (event: any, newValue: any) => {
         setValueTab(newValue);
     }
+    const getStudentInCourseTerm=()=>
+    {
+         axiosInstance.get("webportal/CourseTermStudent/GetAllStudentInCourseTerm",{
+            params:{
+                accessToken:GetUserToken(),
+                courseTermId: GetUrlParam("id")
+            }
+        }).then(function(response){
+            setStudentList(response.data.data);
+        })
+    }
 
 
     useEffect(() => {
@@ -165,23 +183,23 @@ export default function CourseTermEdit() {
                 setBranchList(branch);
             });
 
-           await axiosInstance.get("webportal/OrganizationUser/GetAllUserInOrganization", {
+            await axiosInstance.get("webportal/OrganizationUser/GetAllUserInOrganization", {
                 params: {
-                  accessToken: GetUserToken(),
-                  organizationId: GetUrlParam("organizationId")
+                    accessToken: GetUserToken(),
+                    organizationId: GetUrlParam("organizationId")
                 }
-              }).then(function (response: any) {
+            }).then(function (response: any) {
                 let lector = [] as any;
-                
-                response?.data?.data?.filter((x:any)=> x.userRole === "LECTOR").forEach(function (item: any) {
+
+                response?.data?.data?.filter((x: any) => x.userRole === "LECTOR").forEach(function (item: any) {
                     lector.push({
-                    id: item.id,
-                    name: item.userEmail
-                  });
+                        id: item.id,
+                        name: item.userEmail
+                    });
                 });
 
                 setLectorList(lector);
-              });
+            });
 
             if (id === "") {
                 setValueTab(0);
@@ -200,13 +218,34 @@ export default function CourseTermEdit() {
                 await axiosInstance.get("webportal/CourseTerm/GetCourseTermDetail", {
                     params: {
                         accessToken: GetUserToken(),
-                        courseId: id
+                        courseTermId: id
                     }
                 }).then(function (response: any) {
                     setCourseSale(response.data.data.coursePrice.sale);
                     setCoursePrice(response.data.data.coursePrice.price);
+                    setDefaultMaximumStudents(response.data.data.maximumStudent);
+                    setDefaultMinimumStudents(response.data.data.minimumStudent);
+                    setCourseTermFrom(response.data.data.activeFrom);
+                    setCourseTermTo(response.data.data.activeTo);
+                    setRegistrationFrom(response.data.data.registrationFrom);
+                    setRegistrationTo(response.data.data.registrationTo);
+                    setCourseTimeFrom(response.data.data.timeFromId);
+                    setCourseTimeTo(response.data.data.timeToId);
+                    setMonday(response.data.data.monday);
+                    setThursday(response.data.data.thursday);
+                    setWednesday(response.data.data.wednesday);
+                    setTuesday(response.data.data.tuesday);
+                    setFriday(response.data.data.friday);
+                    setSaturday(response.data.data.saturday);
+                    setSunday(response.data.data.sunday);
+                    setClassRoom(response.data.data.classRoomId);
+                    setBranch(response.data.data.branchId);
+                    setLectors(response.data.data.lector as never[]);
+                    getClassRoomInBranch(response.data.data.branchId);
+                    
                     setValueTab(0);
                 });
+                getStudentInCourseTerm();
 
             }
         }
@@ -216,15 +255,15 @@ export default function CourseTermEdit() {
     const saveBasicData = () => {
         if (id === "") {
             const price = new Price(coursePrice, courseSale);
-            const obj = new AddCourseTerm(GetUrlParam("courseId"),price,courseTermFrom,courseTermTo,registrationFrom,registrationTo,defaultMinimumStudents,
-            defaultMaximumStudents,classRoom,monday,tuesday,wednesday,thursday,friday,saturday,sunday,courseTimeFrom,courseTimeTo,GetUserToken(),"","");
-            console.log(obj);
-              axiosInstance.post("webportal/CourseTerm/AddCourseTerm", obj);
+            const obj = new AddCourseTerm(GetUrlParam("courseId"), price, courseTermFrom, courseTermTo, registrationFrom, registrationTo, defaultMinimumStudents,
+                defaultMaximumStudents, classRoom, monday, tuesday, wednesday, thursday, friday, saturday, sunday, courseTimeFrom, courseTimeTo, GetUserToken(), "", "",lectors);
+            axiosInstance.post("webportal/CourseTerm/AddCourseTerm", JSON.stringify(obj));
         }
         else {
             const price = new Price(coursePrice, courseSale);
-            /*const obj = new UpdateCourse(id, isPrivateCourse, GetUserToken(), courseName, courseDescription, defaultMaximumStudents, defaultMinimumStudents, "", price, courseStatus, courseType);
-            axiosInstance.put("webportal/Course/UpdateCourse", obj)*/
+            const obj = new UpdateCopurseTerm(id, price, courseTermFrom, courseTermTo, registrationFrom, registrationTo, defaultMinimumStudents,
+                defaultMaximumStudents, classRoom, monday, tuesday, wednesday, thursday, friday, saturday, sunday, courseTimeFrom, courseTimeTo, GetUserToken(), "", "",lectors);
+            axiosInstance.put("webportal/CourseTerm/UpdateCourseTerm", JSON.stringify(obj));
         }
     }
 
@@ -237,7 +276,7 @@ export default function CourseTermEdit() {
                 <AppBar position="static">
                     <Tabs value={valueTab} onChange={handleChangeTab} >
                         <Tab label={t("COURSE_TERM_TAB_BASIC_INFORMATION")} {...a11yProps(0)} />
-                        <Tab label={t("COURSE_TERM_TAB_STUDENTS")} {...a11yProps(1)} disabled={id === null} />
+                        <Tab label={t("COURSE_TERM_TAB_STUDENTS")} {...a11yProps(1)} disabled={id === ""} />
                     </Tabs>
                 </AppBar>
                 <TabPanel value={valueTab} index={0}>
@@ -256,16 +295,16 @@ export default function CourseTermEdit() {
                             <CoursePrice price={coursePrice} sale={courseSale} onChangePrice={handleChangeCoursePrice} onChangeSale={handleChangeCourseSale} />
 
                             <Grid item xs={6}>
-                                <CustomDatePicker selectedDate={registrationFrom} onChangeDate={handleRegistrationFromChange} label={t("COURSE_TERM_REGISTRATION_FROM")} />
+                                <CustomDatePicker selectedDate={registrationFrom} onChangeDate={handleRegistrationFromChange} label={t("COURSE_TERM_REGISTRATION_FROM")} minDate={id ==="" ?new Date(): registrationFrom} />
                             </Grid>
                             <Grid item xs={6}>
-                                <CustomDatePicker selectedDate={registrationTo} onChangeDate={handleRegistrationToChange} label={t("COURSE_TERM_REGISTRATION_TO")} />
+                                <CustomDatePicker selectedDate={registrationTo} onChangeDate={handleRegistrationToChange} label={t("COURSE_TERM_REGISTRATION_TO")} minDate={id ==="" ?new Date(): registrationTo}/>
                             </Grid>
                             <Grid item xs={6}>
-                                <CustomDatePicker selectedDate={courseTermFrom} onChangeDate={handleCourseTermFromChange} label={t("COURSE_TERM_TERM_FROM")} />
+                                <CustomDatePicker selectedDate={courseTermFrom} onChangeDate={handleCourseTermFromChange} label={t("COURSE_TERM_TERM_FROM")} minDate={id ==="" ?new Date(): courseTermFrom}/>
                             </Grid>
                             <Grid item xs={6}>
-                                <CustomDatePicker selectedDate={courseTermTo} onChangeDate={handleCourseTermToChange} label={t("COURSE_TERM_TERM_TO")} />
+                                <CustomDatePicker selectedDate={courseTermTo} onChangeDate={handleCourseTermToChange} label={t("COURSE_TERM_TERM_TO")} minDate={id ==="" ?new Date(): courseTermTo}/>
                             </Grid>
                             <Grid item xs={6}>
                                 <CodeBook codeBookIdentificator="cb_timetable" label={t("COURSE_TERM_TIME_START")} id="timeFrom" value={courseTimeFrom} onChange={handleChangeCourseTimeFrom} />
@@ -296,38 +335,32 @@ export default function CourseTermEdit() {
                             </Grid>
                             <Grid item xs={12}>
                                 <CustomSelect label={t("COURSE_LECTORS")} data={lectorList} selectValue={lectors} onChangeValue={handleChangeLector} id="lector" multiple={true} />
-
                             </Grid>
 
 
 
                         </Grid>
-                        <SaveButtons />
+                        <SaveButtons onSave={saveBasicData} backUrl={"/course/edit?id="+GetUrlParam("courseId")+"&organizationId="+GetUrlParam("organizationId")+"&gototab=courseterm"} />
                     </ValidatorForm>
                 </TabPanel>
                 <TabPanel value={valueTab} index={1}>
-                    <CustomTable AddLinkUri={"/courseterm/add?courseId=" + id} AddLinkText={t("COURSE_TERM_BUTTON_ADD")} Columns={
-                        [{ title: t("ORGANIZATION_BRANCH_NAME"), field: 'name' },
-                        { title: t("ORGANIZATION_BRANCH_CITY"), field: 'city' },
-                        { title: t("ORGANIZATION_BRANCH_HOUSE_NUMBER"), field: 'houseNumber' },
-                        { title: t("ORGANIZATION_BRANCH_REGION"), field: 'region' },
-                        { title: t("ORGANIZATION_BRANCH_STREET"), field: 'street' },
-                        { title: t("ORGANIZATION_BRANCH_ZIP_CODE"), field: 'zipCode' },
-                        { title: t("ORGANIZATION_BRANCH_COUNTRY_NAME"), field: 'countryName' },
+                    <CustomTable AddLinkUri={"/courseterm/addstudent?courseTermId=" + id+"&organizationId="+GetUrlParam("organizationId")} AddLinkText={t("COURSE_TERM_ADD_STUDENT")} Columns={
+                        [{ title: t("COURSE_TERM_STUDENT_FIRST_NAME"), field: 'firstName' },
+                        { title: t("COURSE_TERM_STUDENT_LAST_NAME"), field: 'lastname' }
+                        
                         ]
                     }
                         ShowAddButton={true}
-                        ShowEdit={true}
+                        ShowEdit={false}
                         ShowDelete={true}
-                        Data={[]}
-                        EditLinkUri={"/courseterm/edit"}
-                        EditLinkText={t("ORGANIZATION_BRANCH_EDIT")}
-                        DeleteUrl={"webportal/CourseTerm​/DeleteCourseTerm"}
-                        DeleteDialogTitle={t("ORGANIZATION_BRACH_DELETE_TITLE")}
-                        DeleteDialogContent={t("ORGANIZATION_BRANCH_DELETE_CONTENT")}
-                        DeleteParamIdName={"courseTermId"}
+                        Data={studentList}
+                        DeleteUrl={"webportal/CourseTermStudent/DeleteStudentFromCourseTerm"}
+                        DeleteDialogTitle={t("COURSE_TERM_STUDENT_DELETE_TITLE")}
+                        DeleteDialogContent={t("COURSE_TERM_STUDENT_DELETE_CONTENT")}
+                        DeleteParamIdName={"studentId"}
                         ReplaceContent={"name"}
-                        DeleteButtonText={t("ORGANIZATION_BRANCH_DELETE")}
+                        DeleteButtonText={t("COURSE_TERM_STUDENT_DELETE")}
+                        onReload={getStudentInCourseTerm}
                     />
                 </TabPanel>
             </Paper>

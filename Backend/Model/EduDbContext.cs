@@ -28,7 +28,7 @@ namespace Model
             SetTableDefault<Category>(modelBuilder);
             SetTableDefault<Course>(modelBuilder);
             SetTableDefault<CourseCategory>(modelBuilder);
-            SetTableDefault<CourseItem>(modelBuilder);
+            SetTableDefault<CourseLessonItem>(modelBuilder);
             SetTableDefault<CourseLector>(modelBuilder);
             SetTableDefault<CourseRate>(modelBuilder);
             SetTableDefault<CourseStudent>(modelBuilder);
@@ -79,7 +79,7 @@ namespace Model
         public DbSet<Category> Category { get; set; }
         public DbSet<Course> Course { get; set; }
         public DbSet<CourseCategory> CourseCategory { get; set; }
-        public DbSet<CourseItem> CourseItem { get; set; }
+        public DbSet<CourseLessonItem> CourseItem { get; set; }
         public DbSet<CourseLector> CourseLector { get; set; }
         public DbSet<CourseRate> CourseRate { get; set; }
         public DbSet<CourseStudent> CourseStudent { get; set; }
@@ -119,5 +119,7 @@ namespace Model
         public DbSet<TimeTable> TimeTable { get; set; }
         public DbSet<TestStudentResult> TestStudentResult { get; set; }
         public DbSet<EduEmail> EduEmails { get; set; }
+        public DbSet<CourseLessonItemTemplate> CourseLessonItemTemplate { get; set; }
+        public DbSet<FileRepository> FileRepository { get; set; }
     }
 }

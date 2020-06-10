@@ -15,9 +15,9 @@ namespace EduServices.CourseTermService
         {
             _courseTermRepository = courseTermRepository;
         }
-        public void AddCourseTerm(AddCourseTerm addCourseTerm)
+        public Guid AddCourseTerm(AddCourseTerm addCourseTerm)
         {
-            _courseTermRepository.AddCourseTerm(addCourseTerm);
+            return _courseTermRepository.AddCourseTerm(addCourseTerm);
         }
 
         public void UpdateCourseTerm(UpdateCourseTerm updateCourseTerm)

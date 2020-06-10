@@ -51,13 +51,13 @@ namespace EduApi.Controllers.WebPortal.BankOfQuestion
             }
         }
 
-        [HttpGet("{accessToken}/{organizationId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<GetBankOfQuestionInOrganizationDto>), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetBankOfQuestionInOrganization(string accessToken, Guid organizationId)
+        public ActionResult GetBankOfQuestionInOrganization([FromQuery]string accessToken, [FromQuery]Guid organizationId)
         {
             try
             {
@@ -75,13 +75,13 @@ namespace EduApi.Controllers.WebPortal.BankOfQuestion
                 return SendSystemError(e);
             }
         }
-        [HttpGet("{accessToken}/{bankOfQuestionId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(GetBankOfQuestionDetailDto), 200)]
         [ProducesResponseType(typeof(void), 404)]
         [ProducesResponseType(typeof(SystemError), 500)]
         [ProducesResponseType(typeof(Result), 400)]
         [ProducesResponseType(typeof(void), 403)]
-        public ActionResult GetBankOfQuestionDetail(string accessToken, Guid bankOfQuestionId)
+        public ActionResult GetBankOfQuestionDetail([FromQuery]string accessToken, [FromQuery]Guid bankOfQuestionId)
         {
             try
             {

@@ -16,17 +16,20 @@ namespace EduRepository.CourseChapterRepository
 
         }
 
-        public void AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem)
+        public Guid AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem)
         {
+            Guid outGuid = Guid.Empty;
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
                 new SqlParameter("@CourseLessonId", addCourseLessonItem.CourseLessonId),
                 new SqlParameter("@BasicInformationName", addCourseLessonItem.Name),
                 new SqlParameter("@BasicInformationDescription", addCourseLessonItem.Description),
-                new SqlParameter("@Html", addCourseLessonItem.Html)
+                new SqlParameter("@Html", addCourseLessonItem.Html),
+                new SqlParameter("@TemplateId", addCourseLessonItem.TemplateId),
             };
-            CallSqlProcedure("AddCourseLessonItem", sqlParameters);
-        }
+            CallSqlProcedure("AddCourseLessonItem", sqlParameters,true, ref outGuid);
+            return outGuid;
+                }
 
         public void UpdateCourseLessonItem(UpdateCourseLessonItem updateCourseLessonItem)
         {

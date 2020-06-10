@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WebModel.Shared;
 
 namespace WebModel.CourseTermDto
@@ -26,5 +27,6 @@ namespace WebModel.CourseTermDto
         public string UserAccessToken { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public List<string> Lector { get; set; }
     }
 }

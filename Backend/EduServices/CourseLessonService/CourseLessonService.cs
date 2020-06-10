@@ -19,6 +19,11 @@ namespace EduServices.CourseChapterService
             _courseLessonRepository.AddCourseLesson(addCourseLesson);
         }
 
+        public void UpdatePositionCourseLesson(UpdatePositionCourseLesson updatePositionCourseLesson)
+        {
+            _courseLessonRepository.UpdatePositionCourseLesson(updatePositionCourseLesson);
+        }
+
         public void DeleteCourseLesson(Guid courseLessonId)
         {
             _courseLessonRepository.DeleteEntity<CourseLesson>(courseLessonId);

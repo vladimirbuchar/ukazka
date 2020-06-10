@@ -6,7 +6,6 @@ namespace EduFacade.CourseStudentFacade.Convertor
 {
     public interface ICourseStudentConvertor
     {
-        AddStudentToCourseTerm ConvertToBussinessEntity(AddStudentToCourseTermDto addStudentToCourseDto);
         List<GetAllStudentInCourseTermDto> ConvertToWebModel(List<GetAllStudentInCourseTerm> getStudentsInTerms);
     }
 }

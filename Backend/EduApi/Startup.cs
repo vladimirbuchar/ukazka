@@ -43,6 +43,7 @@ namespace EduApi
             services.RegistrationQuestion();
             services.RegistrationAnswer();
             services.RegisterNotification();
+            services.RegisterFileUpload();
             services.AddMvc(
                 options =>
                 {

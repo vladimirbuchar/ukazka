@@ -6,7 +6,7 @@ namespace EduServices.CourseChapterService
 {
     public interface ICourseLessonItemService : IBaseService
     {
-        void AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem);
+        Guid AddCourseLessonItem(AddCourseLessonItem addCourseLessonItem);
         void DeleteCourseLessonItem(Guid courseLessonItemId);
         List<GetCourseLessonItems> GetCourseLessonItems(Guid courseLessonId);
         GetCourseLessonItemDetail GetCourseLessonItemDetail(Guid courseLessonItemId);

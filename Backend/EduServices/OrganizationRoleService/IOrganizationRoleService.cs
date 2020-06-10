@@ -62,5 +62,6 @@ namespace EduServices.OrganizationRoleService
         GetUserOrganizationRoleDetail GetUserOrganizationRoleDetail(Guid userInOrganizationId);
         void UpdateUserInOrganizationRole(UpdateUserInOrganizationRole updateUserInOrganizationRole);
         List<GetUserOrganizationRole> GetUserOrganizationRole(Guid userId, Guid organizationId);
+        Guid GetOrganizationByStudentId(Guid studentId);
     }
 }

@@ -17,7 +17,6 @@ export default function CourseStudentCount(props: any) {
             return false;
         }
         if (value >= 0 ) {
-            console.log(value);
             if (parseInt(value,0) >= parseInt(minimum,0)) {
                 return true;
             }

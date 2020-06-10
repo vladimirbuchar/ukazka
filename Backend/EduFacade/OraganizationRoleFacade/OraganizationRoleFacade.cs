@@ -38,6 +38,11 @@ namespace EduFacade.OraganizationRoleFacade
             return _organizationRoleService.GetOrganizationByCourseLessonItem(courseLessonItemId);
         }
 
+        public Guid GetOrganizationByStudentId(Guid studentId)
+        {
+            return _organizationRoleService.GetOrganizationByStudentId(studentId);
+        }
+
         public Guid GetOrganizationByUserInOrganization(Guid userInOrganizationId)
         {
             return _organizationRoleService.GetOrganizationByUserInOrganization(userInOrganizationId);

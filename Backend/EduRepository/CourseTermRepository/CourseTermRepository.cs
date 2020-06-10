@@ -32,8 +32,9 @@ namespace EduRepository.CourseTermRepository
             }).FirstOrDefault();
         }
 
-        public void AddCourseTerm(AddCourseTerm addCourseTerm)
+        public Guid AddCourseTerm(AddCourseTerm addCourseTerm)
         {
+            Guid outGuid = Guid.Empty;
             List<SqlParameter> sqlParameters = new List<SqlParameter>
             {
                 new SqlParameter("@TimeFromId", addCourseTerm.TimeFromId),
@@ -58,7 +59,8 @@ namespace EduRepository.CourseTermRepository
                 new SqlParameter("@StudentCountMinimumStudent", addCourseTerm.StudentCountMinimumStudent),
                 new SqlParameter("@StudentCountMaximumStudent", addCourseTerm.StudentCountMaximumStudent)
             };
-            CallSqlProcedure("CreateCourseTerm", sqlParameters);
+            CallSqlProcedure("CreateCourseTerm", sqlParameters,true, ref outGuid);
+            return outGuid;
         }
 
         public void UpdateCourseTerm(UpdateCourseTerm updateCourseTerm)
